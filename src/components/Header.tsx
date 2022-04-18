@@ -1,44 +1,58 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import logo from '../assets/images/logo.png'
-import header from '../assets/images/header.png'
+import ToggleButton from './ToggleButton'
+import BlackButton from './BlackButton'
+import links from '../data/links'
+import * as s from './Header.Components'
 
 function Header() {
+  const [isOpened, setIsOpened] = useState(false);
 
-  const links = [
-    {
-      title: 'Tokenomics',
-      url: 'https://harvest-finance.gitbook.io/harvest-finance/general-info/what-do-we-do/profit-share-pool-and-farm-tokenomics'
-    },
-    {
-      title: 'Statistics',
-      url: 'https://farmdashboard.xyz/'
-    },
-    {
-      title: 'Blog', 
-      url: 'https://medium.com/harvest-finance'
-    },
-  ]
+  useEffect(() => {
+    if (isOpened) {
+      const x = window.scrollX;
+      const y = window.scrollY;
+      window.onscroll=function(){window.scrollTo(x, y);};
+    }
+    else {
+      window.onscroll=function(){};
+    }
+    
+  }, [isOpened])
+
   return (
-    <div className='flex relative'>
-      <div className='flex justify-between mx-[6vw] mt-5 w-screen'>
-        <div className='flex jusity-between'>
-          <div className='flex justify-center items-center cursor-pointer'>
-            <img src={logo} className='h-[48px] w-[48px] cursor-pointer mx-2' alt=''/>
-            <span className='font-semibold text-[24px] font-["Work Sans"]'>Harvest</span>
-          </div>
-          <div className='flex justify-center items-center font-medium font-[16px] gap-3 font-semibold ml-[5vw]'>
-            {
-              links.map((link, index) => ( 
-                <a key={link.title} className={`px-2 ${index === 0 ? 'border-l-[1px] border-[#C4C9CA] pl-[3vw]' : ''}`} href={link.url} target='_blank' rel='noreferrer'>{link.title}</a>
-              ))
-            }
-          </div>
+    <div className='flex justify-between items-center relative z-30'>
+      <div className="flex items-center gap-6">
+
+        <div className='flex justify-center items-center cursor-pointer'>
+          <img src={logo} className='h-[48px] w-[48px] cursor-pointer mx-2' alt='' />
+          <span className='hidden font-semibold text-[24px] font-["Work Sans"] md3:block'>Harvest</span>
         </div>
-        <button className='dark-gradient rounded-[10px] text-white text-[16px] leading-3 font-medium w-[160px] h-[50px] px-[24px] py-[15px]' type='button'>
-          Dashboard
-        </button>
+
+        <div className="hidden w-[0.4px] h-[30px] bg-[#C4C9CA] md3:block" />
+
+        {
+          links.map((link) => (
+            <a key={link.title} href={link.url} target='_blank' rel='noreferrer' className="hidden md3:block">{link.title}</a>
+          ))
+        }
+
       </div>
-      <img src={header} className='absolute w-[400px] h-[700px] right-0 cursor-pointer z-[-1]' alt=''/>
+
+      <div className="flex gap-3">
+        <BlackButton link="">Dashboard</BlackButton>
+
+        <ToggleButton isOpened={isOpened} setIsOpened={setIsOpened} />
+
+        <s.NavbarContainer $isOpened={isOpened}>
+          {
+            links.map((link) => (
+              <a key={link.title} href={link.url} target='_blank' rel='noreferrer'>{link.title}</a>
+            ))
+          }
+        </s.NavbarContainer>
+
+      </div>
     </div>
   )
 }
