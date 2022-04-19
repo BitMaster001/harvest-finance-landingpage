@@ -27,7 +27,9 @@ module.exports = {
       boxShadow: {
         'toggle-button': '0px 4px 4px rgba(0, 0, 0, 0.05)',
         'dex-badge': '2px 4px 10px rgba(24, 24, 24, 0.1)',
-        'harvest-badges': '0px 104px 224px rgba(0, 0, 0, 0.05)'
+        'harvest-badges': '0px 104px 224px rgba(0, 0, 0, 0.05)',
+        'square-tag': '0px 4px 4px rgba(0, 0, 0, 0.05)',
+        'square-tag-hover': '0px 64px 74px rgba(0, 0, 0, 0.15)',
       }
     },
     screens: {

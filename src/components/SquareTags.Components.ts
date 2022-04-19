@@ -1,8 +1,9 @@
 import tw from 'tailwind-styled-components'
 
-export const SquareTag = tw.div`
+export const SquareTag = tw.a`
   flex flex-col justify-center items-center
-  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 hover-shadow
+  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300 
+  shadow-square-tag hover:shadow-square-tag-hover z-30
   rounded-[20px] border border-[#E9E9E9] cursor-pointer bg-white
   text-center
   

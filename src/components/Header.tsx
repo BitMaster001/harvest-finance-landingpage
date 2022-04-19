@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import logo from '../assets/images/logo.png'
-import ToggleButton from './ToggleButton'
+// import ToggleButton from './ToggleButton'
+import { Squash as Hamburger } from 'hamburger-react'
 import BlackButton from './BlackButton'
 import links from '../data/links'
 import * as s from './Header.Components'
+import logo from '../assets/images/logo.png'
+import { ToggleButton } from './Header.Components'
 
 function Header() {
   const [isOpened, setIsOpened] = useState(false);
@@ -29,25 +31,27 @@ function Header() {
           <span className='hidden font-semibold text-[24px] font-["Work Sans"] md3:block'>Harvest</span>
         </div>
 
-        <div className="hidden w-[0.4px] h-[30px] bg-[#C4C9CA] md3:block" />
+        <div className="hidden w-[0.4px] h-[30px] bg-[#C4C9CA] md2:block" />
 
         {
           links.map((link) => (
-            <a key={link.title} href={link.url} target='_blank' rel='noreferrer' className="hidden md3:block">{link.title}</a>
+            <a key={link.title} href={link.url} target='_blank' rel='noreferrer' className="hidden md2:block">{link.title}</a>
           ))
         }
 
       </div>
 
       <div className="flex gap-3">
-        <BlackButton link="">Dashboard</BlackButton>
+        <BlackButton link="https://harvest.finance">Dashboard</BlackButton>
 
-        <ToggleButton isOpened={isOpened} setIsOpened={setIsOpened} />
+        <ToggleButton>
+          <Hamburger toggled={isOpened} toggle={setIsOpened} />
+        </ToggleButton>
 
         <s.NavbarContainer $isOpened={isOpened}>
           {
             links.map((link) => (
-              <a key={link.title} href={link.url} target='_blank' rel='noreferrer'>{link.title}</a>
+              <a key={link.title} href={link.url} target='_blank' rel='noreferrer' className="font-bold">{link.title}</a>
             ))
           }
         </s.NavbarContainer>

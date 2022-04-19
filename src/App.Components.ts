@@ -3,14 +3,14 @@ import tw from 'tailwind-styled-components'
 export const MainContainer = tw.div`
   flex flex-col mx-auto max-w-[1440px] 
   
-  mobile:px-4 
   mobile:pt-4 
   
-  tablet:px-8 
-  
-  md2:px-[80px] 
   md2:pt-[24px]
-
+`
+export const SectionWrapper = tw.div`
+  mobile:px-4 
+  tablet:px-8 
+  md2:px-[80px] 
   desktop:px-[100px] 
 `
 export const HeaderImage = tw.div`
@@ -60,10 +60,10 @@ export const CryptoTitle = tw.div`
   miniipad:text-[100px] 
   miniipad:leading-[82px] 
   
-  desktop:pt-[140px] 
+  desktop:pt-[80px] 
 `
-export const StartEarningButton = tw.button`
-  flex justify-between items-center 
+export const StartEarningButton = tw.a`
+  flex justify-between items-center cursor-pointer
   bg-yellow-gradient rounded-[10px] 
   text-[16px] 
   font-medium 

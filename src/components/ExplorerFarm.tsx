@@ -7,10 +7,11 @@ interface IExplorerFarm {
   iconUrl: string,
   title: string,
   description: string,
-  btnLabel: string
+  btnLabel: string,
+  target: string
 }
 
-export default function ExplorerFarm({ order, iconUrl, title, description, btnLabel }: IExplorerFarm) {
+export default function ExplorerFarm({ order, iconUrl, title, description, btnLabel, target }: IExplorerFarm) {
   return (
     <s.ExplorerContainer $order={order}>
       <div className='flex justify-center items-center bg-white w-[68px] h-[68px] rounded-full'>
@@ -21,7 +22,7 @@ export default function ExplorerFarm({ order, iconUrl, title, description, btnLa
       
       <p className="mb-[30px]">{description}</p>
       
-      <BlackButton link="">{btnLabel}</BlackButton>
+      <BlackButton link={target}>{btnLabel}</BlackButton>
     </s.ExplorerContainer>
   )
 }
